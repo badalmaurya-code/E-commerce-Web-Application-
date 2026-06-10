@@ -1,7 +1,9 @@
 import axios from 'axios';
 
 // Use Vite environment variable when provided, otherwise use a relative API path
-const API_BASE_URL = import.meta.env.VITE_API_BASE || '/api/payment';
+const API_BASE_URL =
+  import.meta.env.VITE_API_BASE ||
+  'https://e-commerce-web-application-qbej.onrender.com/api/payment';
 
 /**
  * Get Razorpay Key ID from backend
