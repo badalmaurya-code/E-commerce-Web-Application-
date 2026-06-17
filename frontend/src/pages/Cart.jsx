@@ -84,6 +84,17 @@ const Cart = () => {
       // Calculate total amount
       const totalAmount = cartTotal + (cartTotal > 0 ? 5 : 0); // Add shipping
 
+      // Get user email
+      let userEmail = "";
+      try {
+        const userJson = localStorage.getItem("shopmartUser");
+        if (userJson) {
+          userEmail = JSON.parse(userJson).email || "";
+        }
+      } catch (e) {
+        console.error("Error parsing user email", e);
+      }
+
       // Create Order
       const orderData = await createRazorpayOrder(
         totalAmount,
@@ -119,9 +130,9 @@ const Cart = () => {
                 amount: totalAmount,
                 items: cart, // Save the complete array of items
                 customer: {
-                  name: localStorage.getItem('userName') || 'Customer',
-                  email: localStorage.getItem('userEmail') || '',
-                  phone: localStorage.getItem('userPhone') || ''
+                  name: 'Customer',
+                  email: userEmail,
+                  phone: ''
                 },
                 status: 'success'
               });
@@ -146,7 +157,7 @@ const Cart = () => {
         },
         prefill: {
           name: localStorage.getItem('userName') || 'Customer',
-          email: localStorage.getItem('userEmail') || '',
+          email: userEmail,
           contact: localStorage.getItem('userPhone') || ''
         },
         notes: {

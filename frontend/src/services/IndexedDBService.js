@@ -38,3 +38,20 @@ export const saveTransaction = async (transactionId, orderDetails = {}) => {
     console.error('Error saving to IndexedDB', error);
   }
 };
+
+export const getTransactions = async () => {
+  try {
+    const db = await openDB();
+    return new Promise((resolve, reject) => {
+      const transaction = db.transaction([STORE_NAME], 'readonly');
+      const store = transaction.objectStore(STORE_NAME);
+      const request = store.getAll();
+
+      request.onsuccess = () => resolve(request.result);
+      request.onerror = () => reject(request.error);
+    });
+  } catch (error) {
+    console.error('Error fetching from IndexedDB', error);
+    return [];
+  }
+};

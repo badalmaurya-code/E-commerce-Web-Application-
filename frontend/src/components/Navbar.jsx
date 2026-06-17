@@ -100,6 +100,9 @@ const Navbar = ({ searchTerm, setSearchTerm}) => {
                                     <span>Logged in as</span>
                                     <strong>{userEmail}</strong>
                                 </div>
+                                <Link to="/my-orders" className="dropdown-link" onClick={() => setProfileOpen(false)}>
+                                    My Orders
+                                </Link>
                                 <button type="button" className="dropdown-logout" onClick={handleLogout}>
                                     Logout
                                 </button>
@@ -138,6 +141,9 @@ const Navbar = ({ searchTerm, setSearchTerm}) => {
                             <div className="mobile-link mobile-profile">
                                 <i className="fa-solid fa-user"></i> {userEmail}
                             </div>
+                            <Link to="/my-orders" className="mobile-link" onClick={closeMobileMenu}>
+                                <i className="fa-solid fa-box-open"></i> My Orders
+                            </Link>
                             <button type="button" className="mobile-login" onClick={() => { closeMobileMenu(); handleLogout(); }}>
                                 <i className="fa-solid fa-right-from-bracket"></i> Logout
                             </button>

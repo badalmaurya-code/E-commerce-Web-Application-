@@ -7,6 +7,7 @@ import ProductDetails from './pages/ProductDetails'
 import Cart from './pages/Cart'
 import AboutUs from './pages/AboutUs'
 import Login from './pages/Login'
+import MyOrders from './pages/MyOrders'
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -34,6 +35,7 @@ const App = () => {
         <Route path='/cart' element={<Cart />} />
         <Route path='/about' element={<AboutUs />} />
         <Route path='/login' element={<Login />} />
+        <Route path='/my-orders' element={<MyOrders />} />
       </Routes>
     </main>
 
